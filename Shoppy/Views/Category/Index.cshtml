@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Shoppy.Models.Category>
+
+<dib class="container p-3">
+    <div class = "row pt-4">
+        <div class="col-6">
+            <h2 class=" text-primary">Список категорий </h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
+                <i class="fa fa-plus"></i> &nbsp Создать новую категорию
+            </a>
+        </div>
+
+        <br />  <br />
+
+        @if(Model.Count() > 0)
+        {
+            <table class="table table-bordered table-striped" style="wight100%">
+                <thead>
+                    
+                    <td>
+                        Category Name
+                    </td>
+                    <td>
+                        Display Order
+                    </td>
+
+                    <th> </th>
+                </thead>
+                <tbody>
+                    @foreach(var obj in Model)
+                    {
+                        <tr>
+                            <td wight="50%">@obj.Name</td>
+                            <td wight="30%">@obj.DisplayOrder</td>
+                            <td class="text-center">
+                                <div class="btn-group" roule="group">
+                                    <a asp-controller="Category" asp-route-Id="@obj.Id" asp-action="Edit" class="btn btn-primary mx-2">
+                                        <i class="fas fa-edit"></i> 
+                                    </a>
+                                    <a asp-controller="Category" asp-route-Id="@obj.Id" asp-action="Delete" class="btn btn-danger mx-2">
+                                        <i class="fas fa-trash-alt"></i> 
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No category exist/Категорий не существует</p>
+        }
+    </div>
+
